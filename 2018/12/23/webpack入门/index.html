@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>webpack入门 | yixi&#39;blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="概念node.js、npm和webpacknode.js是一个基于 Chrome V8 引擎的 JavaScript 运行环境，是运行在服务器端的JavaScript，可以摆脱浏览器宿主环境，解析和执行js代码，直接进行底层系统调用，并且内置提供了HTTP服务器相关的大量API。 npm随node.js一起安装，是一个包管理工具，用来解决node.js代码部署问题。 webpack是前端工程化打包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack入门">
+<meta property="og:url" content="http://yoursite.com/2018/12/23/webpack%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="yixi&#39;blog">
+<meta property="og:description" content="概念node.js、npm和webpacknode.js是一个基于 Chrome V8 引擎的 JavaScript 运行环境，是运行在服务器端的JavaScript，可以摆脱浏览器宿主环境，解析和执行js代码，直接进行底层系统调用，并且内置提供了HTTP服务器相关的大量API。 npm随node.js一起安装，是一个包管理工具，用来解决node.js代码部署问题。 webpack是前端工程化打包">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-12-23T07:31:16.000Z">
+<meta property="article:modified_time" content="2020-02-14T07:41:52.474Z">
+<meta property="article:author" content="C2H4">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="yixi&#39;blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">yixi&#39;blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-webpack入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/12/23/webpack%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2018-12-23T07:31:16.000Z" itemprop="datePublished">2018-12-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      webpack入门
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><h2 id="node-js、npm和webpack"><a href="#node-js、npm和webpack" class="headerlink" title="node.js、npm和webpack"></a><em>node.js、npm<em>和</em>webpack</em></h2><p><em>node.js</em>是一个基于 Chrome V8 引擎的 JavaScript 运行环境，是运行在服务器端的JavaScript，可以摆脱浏览器宿主环境，解析和执行js代码，直接进行底层系统调用，并且内置提供了HTTP服务器相关的大量API。 <em>npm</em>随node.js一起安装，是一个包管理工具，用来解决node.js代码部署问题。 <em>webpack</em>是前端工程化打包工具，可以处理功能丰富的大型网站所拥有的复杂的js代码、css代码等，解析它们的依赖关系，转换和打包成模块使用，实现自动化管理前端代码。</p>
+<h1 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h1><p>从功能上来说，node.js可以开启一个Web服务，给浏览器提供数据去展示，并且接收浏览器提交过来的用户产生的数据，存储到数据库中，方便后面使用。 我们在代码中使用node.js打包好的模块（模块指具有相同功能的代码的集合），然后需要通过npm工具为我们的工程导入模块以便代码在本地调用，npm工具被包装成一个类似命令行的模式提供给开发者使用。除了调用node.js已有的模块，我们还可以在npm上发布自己的模块和调用其他人所发布的模块。 webpack则是运行在npm上的一个任务执行者，可以看作npm为开发者提供的一个功能，和webpack实现类似功能的主流构建工具还有grunt，gulp，browerity等，其中webpack非常适用于管理前端开发代码，它将一切文件模块化，可以方便地帮助我们简化前端复杂繁多的js文件、css文件的调用，使我们的web应用工程化。 有用的资料：<a href="https://webpack.js.org" target="_blank" rel="noopener">webpack官方网站</a></p>
+<h1 id="webpack使用"><a href="#webpack使用" class="headerlink" title="webpack使用"></a><em>webpack</em>使用</h1><p>前提：本地环境支持node.js</p>
+<h2 id="全局安装webpack"><a href="#全局安装webpack" class="headerlink" title="全局安装webpack"></a>全局安装webpack</h2><p><code>npm install webpack -g</code></p>
+<p>全局安装webpack </p>
+<p>webpack4，命令行相关的内容都移到 webpack-cli，所以还需要安装 webpack-cli </p>
+<p><code>npm install webpack-cli -g</code></p>
+<h1 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h1><p><code>mkdir app</code> </p>
+<p>项目文件夹</p>
+<p>在项目路径下 </p>
+<p><code>npm init –yes</code></p>
+<p>创建package.json文件</p>
+<p>package.json 是包描述文件，存储着包的信息（包名、版本、项目的依赖项），最好每个项目都要有个 package.json 文件，就像产品说明书。此文件可自己普通文本改名的方式创建，但一般是 npm 命令创建。运行npm init命令会以向导的方式填写包的信息，不想填的话可回车略过。–yes是快速创建，可以跳过信息的填写直接创建，之后想改可以直接到package.json文件中修改。</p>
+<h2 id="局部安装webpack"><a href="#局部安装webpack" class="headerlink" title="局部安装webpack"></a>局部安装webpack</h2><p><code>npm install webpack –save-dev</code></p>
+<p>为什么全局安装了还要局部安装：<a href="https://www.cnblogs.com/linziwei/p/7786895.html" target="_blank" rel="noopener">npm全局安装和局部文件安装区别</a> 关于–save和-dev可参考：<a href="https://www.limitcode.com/detail/59a15b1a69e95702e0780249.html" target="_blank" rel="noopener">npm –save和–save-dev 傻傻分不清</a> 接下来分别示例打包js文件和非js文件(css)两种使用场景来说明webpack使用的基本步骤</p>
+<h2 id="JS文件"><a href="#JS文件" class="headerlink" title="JS文件"></a>JS文件</h2><p>在app目录下创建test.js文件并保存</p>
+<p><code>document.write(“it works!”);</code></p>
+<p>打包为bundle.js </p>
+<p><code>webpack test.js bundle.js</code></p>
+<p>注意，如果是高版本的npm，比如我的是5.6.0，需要加-o </p>
+<p><code>webpack test.js -o bundle.js</code></p>
+<h2 id="CSS文件"><a href="#CSS文件" class="headerlink" title="CSS文件"></a>CSS文件</h2><p>创建style.css文件 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">body &#123; background: pink; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改test.js文件 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(“!style-loader!css-loader!./style.css”);<span class="comment">//引用style.css文件 document.write(require(“it works!”);</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>Webpack 本身只能处理 JavaScript 模块，如果要处理其他类型的文件，就需要使用 loader 进行转换。 所以如果我们需要在应用中添加 css 文件，就需要使用到 css-loader 和 style-loader，他们做两件不同的事情，css-loader 会遍历 CSS 文件，然后找到 url() 表达式然后处理他们，style-loader 会把原来的 CSS 代码插入页面中的一个 style 标签中。</p>
+</blockquote>
+<p>为了使用style-loader和css-loader，同样我们也需要全局安装style-loader和css-loader </p>
+<p><code>npm install style-loader css-loader -g</code></p>
+<p>再局部安装 </p>
+<p><code>npm install style-loader css-loader –save-dev</code></p>
+<p>打包</p>
+<p><code>webpack test.js -o bundle.js</code></p>
+<p>浏览器打开index.html查看效果</p>
+<h2 id="配置-webpack-config-js"><a href="#配置-webpack-config-js" class="headerlink" title="配置 webpack.config.js"></a>配置 webpack.config.js</h2><p>如果我们需要打包多个文件，那么在命令行下一个个输入文件名会比较麻烦，所以我们一般通过配置webpack.config.js文件，然后就可以直接使用webpack命令来打包所有文件。 创建webpack.config.js文件 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123; </span><br><span class="line">	<span class="comment">//指定入口文件 </span></span><br><span class="line">    entry: &#123; <span class="attr">entry</span>: ‘./test.js’ &#125;, </span><br><span class="line">    <span class="comment">//指定出口文件 </span></span><br><span class="line">    output: &#123; <span class="attr">path</span>: __dirname, <span class="attr">filename</span>: ‘test.js’ &#125;, </span><br><span class="line">    <span class="comment">//模块,指定加载器,可配置各种加载器,test里指定加载文件的格式(.css)，loader里指定加载器名称 </span></span><br><span class="line">    <span class="built_in">module</span>:&#123; <span class="attr">rules</span>:[&#123;<span class="attr">test</span>:<span class="regexp">/\.css\$/</span>&#125;, </span><br><span class="line">    loader:”style-loader!css-loader”] </span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意，webpack2之后将loaders改为了rules，如果还是写成</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loaders:[&#123;<span class="attr">test</span>:<span class="regexp">/\.css\$/</span>&#125;, <span class="attr">loader</span>:”style-loader!css-loader”]</span><br></pre></td></tr></table></figure>
+
+<p>将报错</p>
+<p>在指定出口文件中，<code>path:__dirname</code>path指生成的出口文件的统一路径，__dirname表示当前目录。</p>
+<p>如果需要生成的文件在别的目录下，可以在文件开始引入模块path</p>
+<p><code>const path=require(‘path’);</code></p>
+<p>然后就可以使用path.join()方法，这种方法将多个参数字符串合并成一个路径字符串</p>
+<p><code>path: path.join(__dirname,’dist’)</code></p>
+<p>出口文件会在/app/dist文件夹下，如果没有dist文件夹会自动创建</p>
+<p>或者path.resolve()方法，这种方法以程序为根目录，作为起点，根据参数解析出一个绝对路径</p>
+<p><code>path: path.resolve(__dirname,’./dist’)</code></p>
+<p>关于它们的区别：<a href="https://blog.csdn.net/qq_33745501/article/details/80270708" target="_blank" rel="noopener">path.join()和path.resolve()</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/12/23/webpack%E5%85%A5%E9%97%A8/" data-id="ck6lv6a99000074ub6w4md2w2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/11/14/%E4%BD%BF%E7%94%A8LEX(flex)%E5%92%8CYACC(bison)/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">使用LEX(flex)和YACC(bison)</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/12/23/webpack%E5%85%A5%E9%97%A8/">webpack入门</a>
+          </li>
+        
+          <li>
+            <a href="/2018/11/14/%E4%BD%BF%E7%94%A8LEX(flex)%E5%92%8CYACC(bison)/">使用LEX(flex)和YACC(bison)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 C2H4<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
