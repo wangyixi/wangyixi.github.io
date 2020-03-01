@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="HTML/CSS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.内联元素与块级元素   区别 内联元素 块级元素    排列方式 不会独占一行，相邻的内联元素排在同一行，宽度随内容变化 会独占一行，默认情况下宽度自动填满父元素宽度   宽高设置 不可以设置宽度width和高度height 可以设置宽度width和高度height   边距设置 可以设置margin, padding，但只在水平方向有效 可以设置margin, padding   常见内联元">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML-CSS-笔记（一）">
+<meta property="og:url" content="http://c2h4.ink/2020/03/01/HTML-CSS-%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/index.html">
+<meta property="og:site_name" content="yixi&#39;blog">
+<meta property="og:description" content="1.内联元素与块级元素   区别 内联元素 块级元素    排列方式 不会独占一行，相邻的内联元素排在同一行，宽度随内容变化 会独占一行，默认情况下宽度自动填满父元素宽度   宽高设置 不可以设置宽度width和高度height 可以设置宽度width和高度height   边距设置 可以设置margin, padding，但只在水平方向有效 可以设置margin, padding   常见内联元">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-01T02:47:55.000Z">
+<meta property="article:modified_time" content="2020-03-01T02:51:08.618Z">
+<meta property="article:author" content="C2H4">
+<meta property="article:tag" content="HTML&#x2F;CSS">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://c2h4.ink/2020/03/01/HTML-CSS-笔记（一）/"/>
+
+
+
+
+
+  <title>HTML-CSS-笔记（一） | yixi'blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">yixi'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://c2h4.ink/2020/03/01/HTML-CSS-%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="C2H4">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yixi'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTML-CSS-笔记（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-01T10:47:55+08:00">
+                2020-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-内联元素与块级元素"><a href="#1-内联元素与块级元素" class="headerlink" title="1.内联元素与块级元素"></a>1.内联元素与块级元素</h1><table>
+<thead>
+<tr>
+<th align="center">区别</th>
+<th align="center">内联元素</th>
+<th align="center">块级元素</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">排列方式</td>
+<td align="center">不会独占一行，相邻的内联元素排在同一行，宽度随内容变化</td>
+<td align="center">会独占一行，默认情况下宽度自动填满父元素宽度</td>
+</tr>
+<tr>
+<td align="center">宽高设置</td>
+<td align="center">不可以设置宽度width和高度height</td>
+<td align="center">可以设置宽度width和高度height</td>
+</tr>
+<tr>
+<td align="center">边距设置</td>
+<td align="center">可以设置margin, padding，但只在水平方向有效</td>
+<td align="center">可以设置margin, padding</td>
+</tr>
+</tbody></table>
+<h2 id="常见内联元素："><a href="#常见内联元素：" class="headerlink" title="常见内联元素："></a>常见内联元素：</h2><p><strong>a – 锚点</strong><br>abbr – 缩写<br>b – 粗体(不推荐)<br>big – 大字体<br><strong>br – 换行</strong><br>cite – 引用<br><strong>code – 计算机代码(在引用源码的时候需要)</strong><br><strong>em – 强调</strong><br>font – 字体设定(不推荐)<br>i – 斜体<br>kbd – 定义键盘文本<br><strong>label – 表格标签</strong><br><strong>q – 短引用</strong><br><strong>span – 常用内联容器，定义文本内区块</strong><br><strong>strong – 粗体强调</strong><br><strong>textarea – 多行文本输入框</strong> </p>
+<h2 id="常见块级元素"><a href="#常见块级元素" class="headerlink" title="常见块级元素"></a>常见块级元素</h2><p><strong>address – 地址</strong><br><strong>blockquote – 块引用</strong><br>dir – 目录列表<br><strong>div – 常用块级元素，也是CSS layout的主要标签</strong><br><strong>dl – 定义列表</strong><br>fieldset – form控制组<br><strong>form – 交互表单</strong><br><strong>h1 – h6 标题</strong><br><strong>hr – 水平分隔线</strong><br>menu – 菜单列表<br><strong>ol – 有序表单</strong><br><strong>p – 段落</strong><br>pre – 格式化文本<br><strong>table – 表格</strong><br><strong>ul – 无序列表</strong><br><strong>li – 列表项目</strong></p>
+<h2 id="内联块状元素inline-block"><a href="#内联块状元素inline-block" class="headerlink" title="内联块状元素inline-block"></a>内联块状元素inline-block</h2><p>设置<code>display:inline-block</code></p>
+<p>img</p>
+<p>input</p>
+<p>button</p>
+<p>呈现出inline对象，可以与其它行内元素并排，同时也可以设置宽高和边距。</p>
+<h2 id="内联元素与块级元素的转换"><a href="#内联元素与块级元素的转换" class="headerlink" title="内联元素与块级元素的转换"></a>内联元素与块级元素的转换</h2><p>转内联元素：</p>
+<p><code>display: inline</code></p>
+<p>转块级元素：</p>
+<p><code>display: block</code></p>
+<h1 id="2-position属性"><a href="#2-position属性" class="headerlink" title="2.position属性"></a>2.position属性</h1><h2 id="无定位"><a href="#无定位" class="headerlink" title="无定位"></a>无定位</h2><p><code>position: static</code></p>
+<p>该属性值为所有元素定位的默认情况。在我们不愿意元素继承父元素<code>position</code>属性时，可以使用<code>position:static</code>取消继承，即还原元素定位的默认值。元素出现在正常的文档流中。</p>
+<p>此时 <code>top</code>、<code>right</code>、<code>bottom</code>、<code>left</code> 属性和z-<code>index</code>声明无效。</p>
+<h2 id="绝对定位"><a href="#绝对定位" class="headerlink" title="绝对定位"></a>绝对定位</h2><p><code>position: absolute</code></p>
+<p>元素完全脱离文档流，可以设置<code>top</code>、<code>right</code>、<code>bottom</code>、<code>left</code> 属性和z-<code>index</code>，其参考对象时离该元素最近的<code>position</code>值不是<code>static</code>的父元素，当其父元素<code>position</code>值均为<code>static</code>或者未定义时，其参考对象应该是<code>document</code>（浏览器视窗大小的矩形）。一般与相对定位配合使用，父元素为相对定位，子元素设置绝对定位使其相对父元素偏移。</p>
+<p>改变内联元素的特性：使内联元素在设置宽高的时候支持宽高</p>
+<p>改变区块元素的特性：使区块元素在未设置宽度时由内容撑开宽度</p>
+<h2 id="相对定位"><a href="#相对定位" class="headerlink" title="相对定位"></a>相对定位</h2><p><code>position: relative</code></p>
+<p>元素不脱离文档流，可以设置<code>top</code>、<code>right</code>、<code>bottom</code>、<code>left</code> 属性和z-<code>index</code>，其参考对象为离该元素最近的父元素，相对于自身原本位置进行偏移。</p>
+<p>不影响内联元素和区块元素特性。</p>
+<h1 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h1><p>默认<code>floar: none;</code>，可以设置向左或向右浮动<code>float: left;</code>或<code>float: right;</code></p>
+<p>当一个盒子里的元素全为浮动且盒子本身没有高度时，浮动的子元素的高不会撑开盒子，盒子变成了一条线。</p>
+<h2 id="额外标签法"><a href="#额外标签法" class="headerlink" title="额外标签法"></a>额外标签法</h2><p>给最后一个浮动元素后添加一个空标签，设置<code>clear: both;</code></p>
+<p>如：<code>&lt;div style=&quot;clear: both&quot;&gt;&lt;/div&gt;</code></p>
+<p>或  <code>&lt;hr class=&quot;clear&quot;/&gt;</code></p>
+<p>缺点：添加无意义标签，语义差</p>
+<h2 id="父级添加overflow属性"><a href="#父级添加overflow属性" class="headerlink" title="父级添加overflow属性"></a>父级添加overflow属性</h2><p><code>overflow: hidden;</code> 或 <code>overflow: auto;</code></p>
+<p>IE6中还需添加<code>zoom: 1</code>或为父容器设置宽高</p>
+<h2 id="after伪元素"><a href="#after伪元素" class="headerlink" title="after伪元素"></a>after伪元素</h2><p>给父元素添加<code>clearfix</code>类</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span><span class="selector-pseudo">:after</span>&#123;<span class="comment">/*伪元素是行内元素 正常浏览器清除浮动方法*/</span></span><br><span class="line">    <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">clear</span>:both;</span><br><span class="line">    <span class="attribute">visibility</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.clearfix</span>&#123;</span><br><span class="line">    *zoom: 1;/*ie6清除浮动的方式 *号只有IE6-IE7执行，其他浏览器不执行*/</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>缺点：IE6、7不支持伪元素<code>after</code></p>
+<h2 id="固定定位"><a href="#固定定位" class="headerlink" title="固定定位"></a>固定定位</h2><p><code>position: fixed</code></p>
+<p>相对于浏览器窗口进行定位。可以设置<code>top</code>、<code>right</code>、<code>bottom</code>、<code>left</code> 属性和<code>z-index</code>。</p>
+<p>兼容性问题：IE6不支持。</p>
+<h1 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h1><p><code>border: none</code> 表示无边框样式，浏览器并不会对边框进行渲染，也没有实际的宽度。</p>
+<p><code>border: 0</code> 设置边框的宽度为0，浏览器对边框进行渲染。</p>
+<p><code>border-style</code>应在<code>border-color</code>之前设置</p>
+<h1 id="回流reflow和重绘repaint"><a href="#回流reflow和重绘repaint" class="headerlink" title="回流reflow和重绘repaint"></a>回流reflow和重绘repaint</h1><p><code>dispaly: none</code> 不为被隐藏的对象保留其物理空间。会触发<code>reflow</code>回流。</p>
+<p><code>visibility: hidden</code> 所占据的空间位置仍然存在，仅为视觉上的完全透明。会触发<code>repaint</code>重绘。</p>
+<h2 id="reflow"><a href="#reflow" class="headerlink" title="reflow"></a>reflow</h2><p>某个子元素样式发生改变，直接影响到了其父元素以及往上追溯很多祖先元素（包括兄弟元素），这个时候浏览器要重新去渲染这个子元素相关联的所有元素的过程称为回流。</p>
+<p>触发<code>reflow</code>的情况</p>
+<p>1：改变窗口大小<code>resize</code>或<code>scroll</code>页面</p>
+<p>2：改变文字大小或更换字体</p>
+<p>3：内容的改变，如用户在输入框中敲字</p>
+<p>4：激活伪类，如:<code>hover</code></p>
+<p>5：CSS3 动画(<code>animation</code>)和过渡(<code>transition</code>)，动画的每一<code>frame</code>都会触发<code>reflow</code>；</p>
+<p>6：JS脚本操作<code>DOM</code>元素。即添加(<code>appendChild</code>)、删除(<code>removeChild</code>)<code>DOM</code>元素或者改变<code>DOM</code>元素的可见性(<code>display:none</code>)</p>
+<p>7：修改<code>width</code>/<code>height</code>/<code>border</code>/<code>margin</code>/<code>padding</code>和读取<code>offsetWidth</code>/<code>Height</code>、<code>offsetLeft</code>/<code>Top</code>、<code>scrollTop</code>/<code>Left</code>/<code>Width</code>/<code>Height</code>、<code>clientTop</code>/<code>Left</code>/<code>Width</code>/<code>Height</code>等属性时。因为有些元素依赖这些属性去计算。</p>
+<p>8：设置<code>style</code>属性（所以最好用<code>class</code>而不是直接设置<code>style</code>）</p>
+<h2 id="repaint"><a href="#repaint" class="headerlink" title="repaint"></a>repaint</h2><p>改变某个元素的背景色、文字颜色、边框颜色等等不影响它周围或内部布局的属性，将只会引起浏览器 <code>repaint</code>（重绘）。<code>repaint</code> 的速度明显快于 <code>reflow</code>。</p>
+<p>只涉及视觉效果，不涉及布局。</p>
+<p>触发<code>repaint</code>的情况</p>
+<ol>
+<li><code>color</code>的修改</li>
+<li><code>text-align</code>的修改，如 <code>text-align：center；</code></li>
+<li><code>a:hover</code>也会造成重绘；</li>
+<li><code>:hover</code>引起的颜色等不导致页面回流的<code>style</code>变动；等等。</li>
+</ol>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><ol>
+<li>尽量通过<code>class</code>来设计元素样式，不用<code>style</code></li>
+<li>尽可能修改层级较低的<code>DOM</code>结点</li>
+<li>不要把 <code>DOM</code> 节点的属性值放在一个循环里当成循环里的变量。不然这会导致大量地读写这个结点的属性。</li>
+<li>把 <code>DOM</code> 离线后修改。如：<br><code>a&gt;</code> 使用 <code>documentFragment</code> 对象在内存里操作 <code>DOM</code>。<br><code>b&gt;</code> 先把 <code>DOM</code> 给 <code>display:none</code> (有一次 <code>repaint</code>)，然后你想怎么改就怎么改。比如修改 <code>100</code> 次，然后再把他显示出来。<br><code>c&gt;</code> <code>clone</code> 一个 <code>DOM</code> 节点到内存里，然后想怎么改就怎么改，改完后，和在线的那个的交换一下。</li>
+<li>为有动画的元素使用<code>fixed</code>或<code>absolute</code>的<code>position</code>，使动画元素从<code>DOM</code>中独立出来，从而减少对其他元素的影响，那么修改他们的<code>CSS</code>可以减少<code>reflow</code></li>
+<li>不要使用<code>table</code>布局。table的每个元素的大小以及内容的改动，都会导致整个<code>table</code>进行重新计算，造成大幅度的<code>repaint</code>或者<code>reflow</code>。改用<code>div</code>则可以进行针对性的<code>repaint</code>和避免不必要的<code>reflow</code></li>
+<li><code>CSS</code>中避免使用计算表达式</li>
+</ol>
+<h1 id="默认边距"><a href="#默认边距" class="headerlink" title="默认边距"></a>默认边距</h1><table>
+<thead>
+<tr>
+<th></th>
+<th>margin</th>
+<th>padding</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>h1~h6</td>
+<td>有</td>
+<td>无</td>
+</tr>
+<tr>
+<td>dl</td>
+<td>有</td>
+<td>无</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>有（margin-left）</td>
+<td>无</td>
+</tr>
+<tr>
+<td>ol, ul</td>
+<td>有</td>
+<td>有（padding-left）</td>
+</tr>
+<tr>
+<td>table</td>
+<td>无</td>
+<td>无</td>
+</tr>
+<tr>
+<td>th, td</td>
+<td>无</td>
+<td>有</td>
+</tr>
+<tr>
+<td>form</td>
+<td>有（除IE8）</td>
+<td>无</td>
+</tr>
+<tr>
+<td>p</td>
+<td>有</td>
+<td>无</td>
+</tr>
+<tr>
+<td>textarea</td>
+<td>有</td>
+<td>有</td>
+</tr>
+<tr>
+<td>select</td>
+<td>无</td>
+<td>有（chrome, safari）</td>
+</tr>
+<tr>
+<td>img</td>
+<td>有</td>
+<td>无</td>
+</tr>
+<tr>
+<td>body</td>
+<td>有</td>
+<td>无</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/HTML-CSS/" rel="tag"># HTML/CSS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/23/webpack%E5%85%A5%E9%97%A8/" rel="next" title="webpack入门">
+                <i class="fa fa-chevron-left"></i> webpack入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">C2H4</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-内联元素与块级元素"><span class="nav-number">1.</span> <span class="nav-text">1.内联元素与块级元素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#常见内联元素："><span class="nav-number">1.1.</span> <span class="nav-text">常见内联元素：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见块级元素"><span class="nav-number">1.2.</span> <span class="nav-text">常见块级元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内联块状元素inline-block"><span class="nav-number">1.3.</span> <span class="nav-text">内联块状元素inline-block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内联元素与块级元素的转换"><span class="nav-number">1.4.</span> <span class="nav-text">内联元素与块级元素的转换</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-position属性"><span class="nav-number">2.</span> <span class="nav-text">2.position属性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#无定位"><span class="nav-number">2.1.</span> <span class="nav-text">无定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绝对定位"><span class="nav-number">2.2.</span> <span class="nav-text">绝对定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相对定位"><span class="nav-number">2.3.</span> <span class="nav-text">相对定位</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#清除浮动"><span class="nav-number">3.</span> <span class="nav-text">清除浮动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#额外标签法"><span class="nav-number">3.1.</span> <span class="nav-text">额外标签法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#父级添加overflow属性"><span class="nav-number">3.2.</span> <span class="nav-text">父级添加overflow属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#after伪元素"><span class="nav-number">3.3.</span> <span class="nav-text">after伪元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#固定定位"><span class="nav-number">3.4.</span> <span class="nav-text">固定定位</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#边框"><span class="nav-number">4.</span> <span class="nav-text">边框</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#回流reflow和重绘repaint"><span class="nav-number">5.</span> <span class="nav-text">回流reflow和重绘repaint</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#reflow"><span class="nav-number">5.1.</span> <span class="nav-text">reflow</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#repaint"><span class="nav-number">5.2.</span> <span class="nav-text">repaint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化"><span class="nav-number">5.3.</span> <span class="nav-text">优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#默认边距"><span class="nav-number">6.</span> <span class="nav-text">默认边距</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">C2H4</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
