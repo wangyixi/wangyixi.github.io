@@ -229,6 +229,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://c2h4.ink/2020/03/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="C2H4">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="yixi'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" itemprop="url">原型对象和原型链</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-13T15:41:10+08:00">
+                2020-03-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>首先明确一点的是，原型和原型链是针对对象的。</p>
+<h1 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h1><p><strong><code>__proto__</code></strong> 是所有<strong>原型对象或对象实例</strong>自带的隐式<strong>属性</strong>，该属性指向它的原型对象。最终所有对象的原型对象为 <code>object</code>， <code>object</code>的 <code>__proto__</code>指向 <code>null</code>。</p>
+<p>原型对象和对象实例不同，对象实例可以自己通过原型对象进行创建，而原型对象是JS的对象类型。</p>
+<p><strong><code>prototype</code></strong>是所有<strong>函数</strong>在定义时自动创建的<strong>对象</strong>。在通过原型对象创建对象实例时，原型对象的构造函数拥有一个 <code>prototype</code> 对象，这个 <code>prototype</code> 对象则为该原型对象。</p>
+<p>举例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"abc"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>a为 <code>String</code> 的实例，它有一个 <code>a.__proto__</code>属性指向它的原型对象，那么它的原型对象要怎么得知呢？通过a创建时的构造函数 <code>String()</code>，这个构造函数是原型对象的构造函数，它自带一个 <code>String.prototype</code>对象，这个对象就是原型对象 <code>String</code>。</p>
+<p>在这个语句执行时，完成 <code>a.__proto__ = String.prototype</code> 的赋值，这样就可以得知对象实例a的原型对象为 <code>String</code>了。</p>
+<p>对于<strong>自定义函数</strong>的 <strong><code>prototype</code>对象</strong>，这个<strong>对象</strong>会拥有一个 <strong><code>__proto__</code> 属性</strong>。这个 <strong><code>__proto__</code> 属性</strong>指向它的构造函数的<strong><code>prototype</code></strong>对象 （此时完成了一个循环有没有…我觉得这就是原型之所以很绕的原因）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function a()&#123;</span><br><span class="line">	&#x2F;*code*&#x2F;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>那么<strong>自定义函数a</strong>的 <strong><code>prototype</code>对象</strong>的构造函数是谁呢？ </p>
+<p>在这个语句执行时，完成<code>a.prototype.__proto__ = Object.prototype</code>的赋值。</p>
+<p>也就是说，函数的原型对象为 <code>Object</code>。</p>
+<p>JavaScript中所有的对象（函数也是对象）都是<code>Object</code>的实例，并继承<code>Object.prototype</code>的属性和方法。</p>
+<h2 id="constructor属性"><a href="#constructor属性" class="headerlink" title="constructor属性"></a>constructor属性</h2><p><code>a.__proto__ = String.prototype = String</code></p>
+<p><code>String.prototype.constructor = String</code></p>
+<p><img src="/.ink//%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE%5C1.png" alt="原型对象和原型链-constructor属性"></p>
+<h2 id="JS-new一个对象的过程"><a href="#JS-new一个对象的过程" class="headerlink" title="JS new一个对象的过程"></a>JS new一个对象的过程</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Mother</span>(<span class="params">args</span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*code*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> son = <span class="keyword">new</span> Mother(args);</span><br></pre></td></tr></table></figure>
+
+<p>1.创建新对象</p>
+<p><code>var son = new Mother(args);</code></p>
+<p>2.新对象执行[[prototype]]连接</p>
+<p><code>son.__proto__ = Mother.prototype</code></p>
+<p><code>Mother</code>作为一个自定义函数，有<code>Mother.prototype.__proto__ = Object.prototype</code></p>
+<p>3.新对象和函数调用的this绑定</p>
+<p>相当于执行 <code>Mother.call(son, args)</code></p>
+<p>4.执行构造函数中的代码</p>
+<p>5.如果函数没有返回值，那么会自动返回这个新对象，<code>son</code>获得返回值，即经过构造函数处理后的新对象。</p>
+<h1 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h1><p>在上例new一个对象的过程中，存在原型链：</p>
+<p><code>son.__proto__ = Mother.prototype</code></p>
+<p><code>Mother.prototype.__proto__ = Object.prototype</code></p>
+<p>即：</p>
+<p><code>son.__proto__.proto__ = Object.prototype</code></p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="判断一个对象是否为数组："><a href="#判断一个对象是否为数组：" class="headerlink" title="判断一个对象是否为数组："></a>判断一个对象是否为数组：</h3><ol>
+<li>使用 <code>instanceof</code> 操作符</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [];</span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
+
+<p>通过查找左操作数 <code>arr</code> 的原型链上是否有右操作数 <code>Array</code> 构造函数的原型对象</p>
+<p><code>arr.__proto__ = Array.prototype</code></p>
+<ol start="2">
+<li><code>Array.isArray()</code></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://c2h4.ink/2020/03/13/JS%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -309,16 +473,16 @@
 <h1 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h1><p>首先明确的是，JS是大小写敏感的，那么上文的 <code>number</code> 和 <code>Number</code> 当然就不同。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; <span class="comment">//基本类型number</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="built_in">Number</span>(<span class="number">1</span>); <span class="comment">//与上面等价</span></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">1</span>); <span class="comment">//引用类型Number，是原型对象，创建一个叫c的实例</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584067175515.png" alt="1584067175515"></p>
+<p><img src="/.ink//D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584067175515.png" alt="1584067175515"></p>
 <p>使用 <code>typeof</code> 查看变量的类型，可以看到c是一个<code>object</code>，它自动带有一个 <code>__proto__</code> 属性指向对象原型对象 <code>Number</code></p>
-<p><img src="D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584067447134.png" alt="1584067447134"></p>
+<p><img src="/.ink//D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584067447134.png" alt="1584067447134"></p>
 <h2 id="typeof操作符"><a href="#typeof操作符" class="headerlink" title="typeof操作符"></a>typeof操作符</h2><p><code>typeof</code>操作可以返回以下字符串：</p>
 <p><code>undefined</code> <code>boolean</code> <code>number</code> <code>string</code> <code>object</code> <code>function</code></p>
 <p><code>null</code>会被理解成一个空对象。</p>
 <p>函数<code>function</code>在JS中事实上也是一种对象，使用<code>typeof</code>区分的是函数和其他对象。</p>
 <p>对于 <code>Number</code> 来说，使用 <code>Number()</code>创建的为 <code>number</code>类型，使用 <code>new NUmber()</code>构造函数创建的是对象，<code>typeof</code>操作符对函数名 <code>Number</code>返回的为 <code>function</code> , 由上文a,b的类型可知，<code>Number(1)</code>与1等价，所以返回的是 <code>number</code>。</p>
 <p>正则 <code>RefExp</code>创建的变量数据类型则是<code>object</code> 。</p>
-<p><img src="D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584069399857.png" alt="， 1584069399857"></p>
+<p><img src="/.ink//D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584069399857.png" alt="， 1584069399857"></p>
 <h3 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h3><p><code>typeof</code>操作符对未初始化和未声明的变量都会返回<code>undefined</code>值。</p>
 <p>为了避免无法区分未初始化和未声明的变量，我们可以显式地对变量进行初始化。如果定义的变量准备将来用于保存对象，可以初始化为 <code>null</code>。</p>
 <p><code>undefined</code> 值派生于 <code>null</code></p>
@@ -326,170 +490,6 @@
 <h2 id="字符串转换"><a href="#字符串转换" class="headerlink" title="字符串转换"></a>字符串转换</h2><p>除了 <code>null</code> 和 <code>undefined</code>，其他值（包括字符串）都有 <code>toString()</code>方法，该方法返回字符串的的一个副本。</p>
 <p>在将数值转换成字符串时，可以传递一个参数指定基数。</p>
 <h2 id="对象转换"><a href="#对象转换" class="headerlink" title="对象转换"></a>对象转换</h2><p>对象有一个 <code>valueof()</code> 方法，可以返回对象的字符串、数值或布尔值表示，通常与 <code>toString()</code>返回值相同。在将对象转换成数值时，先调用 <code>valueof</code>方法，如果返回 <code>NaN</code>，则调用 <code>toString()</code></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://c2h4.ink/2020/03/13/%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="C2H4">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="yixi'blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/03/13/%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" itemprop="url">原型和原型链</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-13T09:57:16+08:00">
-                2020-03-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>首先明确一点的是，原型和原型链是针对对象的。</p>
-<h1 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h1><p><strong><code>__proto__</code></strong> 是所有<strong>原型对象或对象实例</strong>自带的隐式<strong>属性</strong>，该属性指向它的原型对象。最终所有对象的原型对象为 <code>object</code>， <code>object</code>的 <code>__proto__</code>指向 <code>null</code>。</p>
-<p>原型对象和对象实例不同，对象实例可以自己通过原型对象进行创建，而原型对象是JS的对象类型。</p>
-<p><strong><code>prototype</code></strong>是所有<strong>函数</strong>在定义时自动创建的<strong>对象</strong>。在通过原型对象创建对象实例时，原型对象的构造函数拥有一个 <code>prototype</code> 对象，这个 <code>prototype</code> 对象则为该原型对象。</p>
-<p>举例：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">"abc"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>a为 <code>String</code> 的实例，它有一个 <code>a.__proto__</code>属性指向它的原型对象，那么它的原型对象要怎么得知呢？通过a创建时的构造函数 <code>String()</code>，这个构造函数是原型对象的构造函数，它自带一个 <code>String.prototype</code>对象，这个对象就是原型对象 <code>String</code>。</p>
-<p>在这个语句执行时，完成 <code>a.__proto__ = String.prototype</code> 的赋值，这样就可以得知对象实例a的原型对象为 <code>String</code>了。</p>
-<p>对于<strong>自定义函数</strong>的 <strong><code>prototype</code>对象</strong>，这个<strong>对象</strong>会拥有一个 <strong><code>__proto__</code> 属性</strong>。这个 <strong><code>__proto__</code> 属性</strong>指向它的构造函数的<strong><code>prototype</code></strong>对象 （此时完成了一个循环有没有…我觉得这就是原型之所以很绕的原因）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function a()&#123;</span><br><span class="line">	&#x2F;*code*&#x2F;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>那么<strong>自定义函数a</strong>的 <strong><code>prototype</code>对象</strong>的构造函数是谁呢？ </p>
-<p>在这个语句执行时，完成<code>a.prototype.__proto__ = Object.prototype</code>的赋值。</p>
-<p>也就是说，函数的原型对象为 <code>Object</code>。</p>
-<p>JavaScript中所有的对象（函数也是对象）都是<code>Object</code>的实例，并继承<code>Object.prototype</code>的属性和方法。</p>
-<h2 id="constructor属性"><a href="#constructor属性" class="headerlink" title="constructor属性"></a>constructor属性</h2><p><code>a.__proto__ = String.prototype = String</code></p>
-<p><code>String.prototype.constructor = String</code></p>
-<p><img src="D:%5Cwangyixi.github.io%5Csource%5Cimage%5Cimage-20200313144351908.png" alt="image-20200313144351908"></p>
-<h2 id="JS-new一个对象的过程"><a href="#JS-new一个对象的过程" class="headerlink" title="JS new一个对象的过程"></a>JS new一个对象的过程</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Mother</span>(<span class="params">args</span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*code*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> son = <span class="keyword">new</span> Mother(args);</span><br></pre></td></tr></table></figure>
-
-<p>1.创建新对象</p>
-<p><code>var son = new Mother(args);</code></p>
-<p>2.新对象执行[[prototype]]连接</p>
-<p><code>son.__proto__ = Mother.prototype</code></p>
-<p><code>Mother</code>作为一个自定义函数，有<code>Mother.prototype.__proto__ = Object.prototype</code></p>
-<p>3.新对象和函数调用的this绑定</p>
-<p>相当于执行 <code>Mother.call(son, args)</code></p>
-<p>4.执行构造函数中的代码</p>
-<p>5.如果函数没有返回值，那么会自动返回这个新对象，<code>son</code>获得返回值，即经过构造函数处理后的新对象。</p>
-<h1 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h1><p>在上例new一个对象的过程中，存在原型链：</p>
-<p><code>son.__proto__ = Mother.prototype</code></p>
-<p><code>Mother.prototype.__proto__ = Object.prototype</code></p>
-<p>即：</p>
-<p><code>son.__proto__.proto__ = Object.prototype</code></p>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="判断一个对象是否为数组："><a href="#判断一个对象是否为数组：" class="headerlink" title="判断一个对象是否为数组："></a>判断一个对象是否为数组：</h3><ol>
-<li>使用 <code>instanceof</code> 操作符</li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [];</span><br><span class="line"><span class="built_in">console</span>.log(arr <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">//true</span></span><br></pre></td></tr></table></figure>
-
-<p>通过查找左操作数 <code>arr</code> 的原型链上是否有右操作数 <code>Array</code> 构造函数的原型对象</p>
-<p><code>arr.__proto__ = Array.prototype</code></p>
-<ol start="2">
-<li><code>Array.isArray()</code></li>
-</ol>
 
           
         

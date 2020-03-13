@@ -81,18 +81,18 @@
 
 <meta name="description" content="首先明确一点的是，原型和原型链是针对对象的。 原型__proto__ 是所有原型对象或对象实例自带的隐式属性，该属性指向它的原型对象。最终所有对象的原型对象为 object， object的 __proto__指向 null。 原型对象和对象实例不同，对象实例可以自己通过原型对象进行创建，而原型对象是JS的对象类型。 prototype是所有函数在定义时自动创建的对象。在通过原型对象创建对象实例时">
 <meta property="og:type" content="article">
-<meta property="og:title" content="原型和原型链">
-<meta property="og:url" content="http://c2h4.ink/2020/03/13/%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/index.html">
+<meta property="og:title" content="原型对象和原型链">
+<meta property="og:url" content="http://c2h4.ink/2020/03/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/index.html">
 <meta property="og:site_name" content="yixi&#39;blog">
 <meta property="og:description" content="首先明确一点的是，原型和原型链是针对对象的。 原型__proto__ 是所有原型对象或对象实例自带的隐式属性，该属性指向它的原型对象。最终所有对象的原型对象为 object， object的 __proto__指向 null。 原型对象和对象实例不同，对象实例可以自己通过原型对象进行创建，而原型对象是JS的对象类型。 prototype是所有函数在定义时自动创建的对象。在通过原型对象创建对象实例时">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="d:%5Cwangyixi.github.io%5Csource%5Cimage%5Cimage-20200313144351908.png">
-<meta property="article:published_time" content="2020-03-13T01:57:16.000Z">
-<meta property="article:modified_time" content="2020-03-13T07:19:26.086Z">
+<meta property="og:image" content="http://c2h4.ink/.ink//%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE%5C1.png">
+<meta property="article:published_time" content="2020-03-13T07:41:10.000Z">
+<meta property="article:modified_time" content="2020-03-13T07:44:15.189Z">
 <meta property="article:author" content="C2H4">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="d:%5Cwangyixi.github.io%5Csource%5Cimage%5Cimage-20200313144351908.png">
+<meta name="twitter:image" content="http://c2h4.ink/.ink//%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE%5C1.png">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://c2h4.ink/2020/03/13/原型和原型链/"/>
+  <link rel="canonical" href="http://c2h4.ink/2020/03/13/原型对象和原型链/"/>
 
 
 
 
 
-  <title>原型和原型链 | yixi'blog</title>
+  <title>原型对象和原型链 | yixi'blog</title>
   
 
 
@@ -235,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://c2h4.ink/2020/03/13/%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">
+    <link itemprop="mainEntityOfPage" href="http://c2h4.ink/2020/03/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="C2H4">
@@ -252,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">原型和原型链</h1>
+          <h1 class="post-title" itemprop="name headline">原型对象和原型链</h1>
         
 
         <div class="post-meta">
@@ -264,7 +264,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-13T09:57:16+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-13T15:41:10+08:00">
                 2020-03-13
               </time>
             
@@ -320,7 +320,7 @@
 <p>JavaScript中所有的对象（函数也是对象）都是<code>Object</code>的实例，并继承<code>Object.prototype</code>的属性和方法。</p>
 <h2 id="constructor属性"><a href="#constructor属性" class="headerlink" title="constructor属性"></a>constructor属性</h2><p><code>a.__proto__ = String.prototype = String</code></p>
 <p><code>String.prototype.constructor = String</code></p>
-<p><img src="D:%5Cwangyixi.github.io%5Csource%5Cimage%5Cimage-20200313144351908.png" alt="image-20200313144351908"></p>
+<p><img src="public/2020/03/13/原型对象和原型链/1.png" alt="原型对象和原型链-constructor属性"></p>
 <h2 id="JS-new一个对象的过程"><a href="#JS-new一个对象的过程" class="headerlink" title="JS new一个对象的过程"></a>JS new一个对象的过程</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Mother</span>(<span class="params">args</span>)</span>&#123;</span><br><span class="line">	<span class="comment">/*code*/</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> son = <span class="keyword">new</span> Mother(args);</span><br></pre></td></tr></table></figure>
 
 <p>1.创建新对象</p>
@@ -377,8 +377,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/01/HTML-CSS-%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" rel="next" title="HTML-CSS-笔记（一）">
-                <i class="fa fa-chevron-left"></i> HTML-CSS-笔记（一）
+              <a href="/2020/03/13/JS%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="next" title="JS数据类型">
+                <i class="fa fa-chevron-left"></i> JS数据类型
               </a>
             
           </div>
@@ -386,10 +386,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/03/13/JS%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" rel="prev" title="JS数据类型">
-                JS数据类型 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

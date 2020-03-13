@@ -86,15 +86,15 @@
 <meta property="og:site_name" content="yixi&#39;blog">
 <meta property="og:description" content="基本概念基本类型基本类型可以想象成C&#x2F;C++中的值类型，所谓“基本类型本身的值不会改变”，指的是基本类型在赋值过程中对原始值进行了复制，改变的是基本类型所赋值的变量。基本类型由栈自动分配内存，系统自动回收。 简单数据类型：string, number, boolean, null, undefined, Symbol(SE6) 复杂数据类型：object 引用类型引用类型又可以称为对象，它们在赋值">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="d:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584067175515.png">
-<meta property="og:image" content="d:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584067447134.png">
-<meta property="og:image" content="d:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584069399857.png">
+<meta property="og:image" content="http://c2h4.ink/.ink//D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584067175515.png">
+<meta property="og:image" content="http://c2h4.ink/.ink//D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584067447134.png">
+<meta property="og:image" content="http://c2h4.ink/.ink//D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584069399857.png">
 <meta property="article:published_time" content="2020-03-13T02:07:40.000Z">
 <meta property="article:modified_time" content="2020-03-13T03:46:29.766Z">
 <meta property="article:author" content="C2H4">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="d:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584067175515.png">
+<meta name="twitter:image" content="http://c2h4.ink/.ink//D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584067175515.png">
 
 
 
@@ -313,16 +313,16 @@
 <h1 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h1><p>首先明确的是，JS是大小写敏感的，那么上文的 <code>number</code> 和 <code>Number</code> 当然就不同。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>; <span class="comment">//基本类型number</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="built_in">Number</span>(<span class="number">1</span>); <span class="comment">//与上面等价</span></span><br><span class="line"><span class="keyword">var</span> c = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">1</span>); <span class="comment">//引用类型Number，是原型对象，创建一个叫c的实例</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584067175515.png" alt="1584067175515"></p>
+<p><img src="/.ink//D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584067175515.png" alt="1584067175515"></p>
 <p>使用 <code>typeof</code> 查看变量的类型，可以看到c是一个<code>object</code>，它自动带有一个 <code>__proto__</code> 属性指向对象原型对象 <code>Number</code></p>
-<p><img src="D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584067447134.png" alt="1584067447134"></p>
+<p><img src="/.ink//D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584067447134.png" alt="1584067447134"></p>
 <h2 id="typeof操作符"><a href="#typeof操作符" class="headerlink" title="typeof操作符"></a>typeof操作符</h2><p><code>typeof</code>操作可以返回以下字符串：</p>
 <p><code>undefined</code> <code>boolean</code> <code>number</code> <code>string</code> <code>object</code> <code>function</code></p>
 <p><code>null</code>会被理解成一个空对象。</p>
 <p>函数<code>function</code>在JS中事实上也是一种对象，使用<code>typeof</code>区分的是函数和其他对象。</p>
 <p>对于 <code>Number</code> 来说，使用 <code>Number()</code>创建的为 <code>number</code>类型，使用 <code>new NUmber()</code>构造函数创建的是对象，<code>typeof</code>操作符对函数名 <code>Number</code>返回的为 <code>function</code> , 由上文a,b的类型可知，<code>Number(1)</code>与1等价，所以返回的是 <code>number</code>。</p>
 <p>正则 <code>RefExp</code>创建的变量数据类型则是<code>object</code> 。</p>
-<p><img src="D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584069399857.png" alt="， 1584069399857"></p>
+<p><img src="/.ink//D:%5Cwangyixi.github.io%5Csource%5Cimage%5C1584069399857.png" alt="， 1584069399857"></p>
 <h3 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h3><p><code>typeof</code>操作符对未初始化和未声明的变量都会返回<code>undefined</code>值。</p>
 <p>为了避免无法区分未初始化和未声明的变量，我们可以显式地对变量进行初始化。如果定义的变量准备将来用于保存对象，可以初始化为 <code>null</code>。</p>
 <p><code>undefined</code> 值派生于 <code>null</code></p>
@@ -360,8 +360,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/03/13/%E5%8E%9F%E5%9E%8B%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" rel="next" title="原型和原型链">
-                <i class="fa fa-chevron-left"></i> 原型和原型链
+              <a href="/2020/03/01/HTML-CSS-%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/" rel="next" title="HTML-CSS-笔记（一）">
+                <i class="fa fa-chevron-left"></i> HTML-CSS-笔记（一）
               </a>
             
           </div>
@@ -369,6 +369,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/13/%E5%8E%9F%E5%9E%8B%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%8E%9F%E5%9E%8B%E9%93%BE/" rel="prev" title="原型对象和原型链">
+                原型对象和原型链 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
